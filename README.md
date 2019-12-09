@@ -70,4 +70,10 @@ This error happens due to a security measure which won't let scripts be executed
 
         set-executionpolicy remotesigned
 ```
+# Servicios inyectables en Angular
+* **https://academia-binaria.com/servicios-inyectables-en-Angular/**
+
+# Tutorial Angular Introducción
+* **https://github.com/AcademiaBinaria/angular-basic**
+
 
