@@ -17,6 +17,8 @@ npm cache clean --force
 ng new => Si ejecutamos solo esta linea de comandos, el CLI mostrara opciones.
 ng new blog
 
+ng new blog --routing  // Para que nos genere un módulo de ruta listo para funcionar
+
 ```
 * **New Component**
 ```
@@ -78,3 +80,4 @@ This error happens due to a security measure which won't let scripts be executed
 
 # ¿Cómo implementar Lazy Loading en Angular?
 * **https://medium.com/@HenryGBC/c%C3%B3mo-implementar-lazy-loading-en-angular-74b6e85d021f**
+* **https://blog.ng-classroom.com/blog/angular/dominando_lazy_loading_en_angular/**
