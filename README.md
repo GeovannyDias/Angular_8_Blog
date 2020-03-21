@@ -40,17 +40,38 @@ ng test
 ```
 ng build --prod
 ```
-# Components
-```
-ng g module components/pages/home -m=app --route home     => Creamos un modulo estará en el módulo principal
-ng g c components/posts/new-post -m=app     => Creamos un componente que estará en el módulo principal
-ng g module components/posts/new-post -m=app
-ng g module components/posts/list-posts -m=app --route posts
-ng g c components/posts/post
 
-ng g service components/posts/post --flat
+# Creamos componentes & Rutas - Angular 8, Firebase, Angular Material
+## Components
 ```
-# Angular Material
+ng g module components/pages/home -m=app --route home     => Creamos un "módulo" estará en el módulo principal (-m=app indica en que módulo lo queremos - en el modulo "app" // --router home  => crea la ruta home al hacer la creación del módulo)
+
+ng g c components/posts/new-post -m=app     => Creamos un "componente" que estará en el módulo principal.
+ng g module components/posts/new-post -m=app => Solo crear un "módulo". (Sin rutas)
+
+ng g module components/posts/list-posts -m=app --route posts    => general un componente para el listado de posts. (Componete que se mostrará en el apartado de admin donde se mostrará todos los posts. // Eliminar del routing)
+
+ng g c components/posts/post => para mostrar el post single.
+
+
+```
+# Creamos Interface / Service - Angular 8 - #2
+
+```
+Crear ficheros de forma manual:
+
+shared/models
+file.interface.ts
+post.interface.ts
+
+Service:
+
+ng g service components/posts/post --flat     => genera un service con la bandera --flat que no crea la capera.
+```
+
+# Instalación Angular Material con schematics - Angular 8 - #3
+
+## Angular Material
 
 * **Schematics**
 ```
@@ -58,13 +79,29 @@ Generador de código basado en plantillas, a través de un conjunto de instrucci
 
 ng add @angular/material
 
+Crear un módulo especifico para Angular Material:
+
+ng g m material -m=app --flat
+
+https://material.angular.io/guide/getting-started
+
+Imagenes Random:
+https://picsum.photos/
+
+Extensión VSC:
+
+Angular Material 2, Flex layout 1, Covalent 1 & Material icon snippets
+
 ```
+
+# Comunicación entre componentes Angular - #4
 
 ```
 4
 ```
 
 * **script1.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at http://go.microsoft.com/fwlink/?LinkID=135170**
+
 ```
 script1.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at http://go.microsoft.com/fwlink/?LinkID=135170
 
