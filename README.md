@@ -127,3 +127,6 @@ This error happens due to a security measure which won't let scripts be executed
 # ¿Cómo implementar Lazy Loading en Angular?
 * **https://medium.com/@HenryGBC/c%C3%B3mo-implementar-lazy-loading-en-angular-74b6e85d021f**
 * **https://blog.ng-classroom.com/blog/angular/dominando_lazy_loading_en_angular/**
+
+# Cómo usar Flexbox en Angular Material
+* **https://www.belikesoftware.com/usar-flexbox-angular-material/**
