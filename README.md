@@ -130,3 +130,4 @@ This error happens due to a security measure which won't let scripts be executed
 
 # Cómo usar Flexbox en Angular Material
 * **https://www.belikesoftware.com/usar-flexbox-angular-material/**
+* **https://stackoverflow.com/questions/43200545/create-a-responsive-toolbar-using-angular-material**
