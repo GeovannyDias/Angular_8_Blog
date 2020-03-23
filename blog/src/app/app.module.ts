@@ -10,6 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { ToolbarComponent } from './shared/componentes/toolbar/toolbar.component';
 
+/* Firebase */
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireStorageModule, StorageBucket } from "@angular/fire/storage";
+import { AngularFireModule } from "@angular/fire";
+import { firebaseConfig } from 'src/environments/environment';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,12 +27,20 @@ import { ToolbarComponent } from './shared/componentes/toolbar/toolbar.component
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+
     AppRoutingModule,
     NewPostModule,
-    BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+
   ],
-  providers: [],
+  providers: [
+    { provide: StorageBucket, useValue: 'gs://blog-geo.appspot.com' } // Para trabajar con el Bucket de las imagenes (Storage of Firebase)
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
