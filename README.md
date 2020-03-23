@@ -114,23 +114,110 @@ ng g c shared/components/toolbar -m=app (Crear componente que sea parte del mód
 
 Page About:
 ng g m components/pages/about -m=app --route about
+```
+
+# Configuramos Firebase - Firebase Console Angular 8 - #6
+
+```
+Project Name: Blog-Geo
+
+Activar o Habilitar:
+
+Autenticación por correo
+Base de datos
+Storage
+
+Cambiar las reglas de seguridad:
+
+Defaul:
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+
+Cambio:
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write;
+    }
+  }
+}
+
+Pendiente Habilidar Hosting:
+
+AngularFire:
+
+npm install firebase @angular/fire --save
+npm install firebase --save
+npm audit fix (if any vulnerabilities found else ignore)
 
 
+Hosting CLI: (Pendiente)
 
+ng add @angular/fire
+firebase logout
+firebase login
 
 ```
 
-
-# 
-
-```
+# Creamos métodos en el Services Angular 8 - Angular Material, Angular - #7
 
 ```
+CRUD - GEO
+
+  private postCollection: AngularFirestoreCollection<PostI>;
+  private posts: Observable<PostI[]>;
+
+  constructor(private db: AngularFirestore) { }
+
+  getPosts() {
+    this.postCollection = this.db.collection<PostI>('posts');
+    const posts = this.postCollection.snapshotChanges().pipe(map(
+      actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data }; //operador de propagacion
+        });
+      }
+    ));
+
+    return posts;
+  }
+
+  getPost(id: string) {
+    this.postCollection = this.db.collection<PostI>('posts');
+    return this.postCollection.doc<PostI>(id).valueChanges();
+  }
+
+  updatePost(id: string, post: PostI) {
+    this.postCollection = this.db.collection<PostI>('posts');
+    return this.postCollection.doc(id).update(post);
+  }
+
+  setPost(post: PostI) {
+    const id = this.db.createId();
+    this.postCollection = this.db.collection<PostI>('posts');
+    return this.postCollection.doc(id).set({ ...post });
+  }
+
+  removePost(id) {
+    this.postCollection = this.db.collection<PostI>('posts');
+    return this.postCollection.doc(id).delete();
+  }
 
 
 
-```
-5
+
+
 ```
 
 

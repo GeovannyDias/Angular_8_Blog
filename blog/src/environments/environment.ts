@@ -9,6 +9,7 @@ export const environment = {
 
 export const firebaseConfig = {
   // Key Firebase
+  
 };
 
 /*

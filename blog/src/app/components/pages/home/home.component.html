@@ -1,4 +1,7 @@
-<div class="container">
+<!-- pipe | async para subscribir el Observable-->
+<div class="container" *ngIf="posts$ | async as posts; else loading">
+    <!-- {{ posts$ | async | json }} -->
+    <!-- <mat-card class="post-card" *ngFor="let post of posts$ | async"> -->
     <mat-card class="post-card" *ngFor="let post of posts">
         <mat-card-header>
             <mat-card-title>
@@ -14,5 +17,25 @@
                 {{ post.contentPost }}
             </p>
         </mat-card-content>
+
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+            <mat-chip-list>
+                <mat-chip selected *ngFor="let tag of post.tagsPost" [ngClass]="tag">
+                    {{ tag }}
+                </mat-chip>
+            </mat-chip-list>
+        </mat-card-actions>
+        <!-- {{ post.tagsPost | json }} -->
+
     </mat-card>
 </div>
+
+<!-- Loading para saber si esta cargando los Posts -->
+
+<ng-template #loading>
+    <!-- Loading... -->
+    <div class="container-spinner">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>
