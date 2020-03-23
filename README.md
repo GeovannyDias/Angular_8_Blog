@@ -100,6 +100,15 @@ Angular Material 2, Flex layout 1, Covalent 1 & Material icon snippets
 4
 ```
 
+# Angular material toolbar - Angular Material, Angular 8 - #5
+
+```
+5
+```
+
+
+
+
 * **script1.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at http://go.microsoft.com/fwlink/?LinkID=135170**
 
 ```
