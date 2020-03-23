@@ -214,16 +214,13 @@ CRUD - GEO
     return this.postCollection.doc(id).delete();
   }
 
-
-
-
-
 ```
 
-
-# 
+# Recuperar registro de Firebase - Angular Material Angular - #8
 
 ```
+Consultar: Como se puede encapsular en un componente el loading
+
 
 ```
 

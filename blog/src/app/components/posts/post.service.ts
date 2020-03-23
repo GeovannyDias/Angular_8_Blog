@@ -20,6 +20,7 @@ export class PostService {
   // CRUD - GEO
   // ==========================================================================
 
+  // All Post
   getPosts() {
     console.log('post.service → getPosts');
     this.postCollection = this.db.collection<PostI>('posts');
@@ -35,6 +36,8 @@ export class PostService {
 
     return posts;
   }
+
+  // One Post
 
   getPost(id: string) {
     this.postCollection = this.db.collection<PostI>('posts');
