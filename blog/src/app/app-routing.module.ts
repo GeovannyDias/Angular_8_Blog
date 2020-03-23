@@ -10,7 +10,8 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'home', loadChildren: () => import('./components/pages/home/home.module').then(m => m.HomeModule) },
-  { path: 'post/:id', component: PostComponent }
+  { path: 'post/:id', component: PostComponent },
+  { path: 'about', loadChildren: () => import('./components/pages/about/about.module').then(m => m.AboutModule) }
   // { path: 'posts', loadChildren: () => import('./components/posts/list-posts/list-posts.module').then(m => m.ListPostsModule) }
 
 ];

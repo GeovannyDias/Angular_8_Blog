@@ -103,10 +103,90 @@ Angular Material 2, Flex layout 1, Covalent 1 & Material icon snippets
 # Angular material toolbar - Angular Material, Angular 8 - #5
 
 ```
+CLI:
+
+ng g @angular/material:material-nav (Crear el Toolbar mediante el CLI - No utilizado por el momento)
+
+Manual:
+
+ng g c shared/components/toolbar -m=material (Crear componente que sea parte del módulo de material)
+ng g c shared/components/toolbar -m=app (Crear componente que sea parte del módulo principal - app)
+
+Page About:
+ng g m components/pages/about -m=app --route about
+
+
+
+
+```
+
+
+# 
+
+```
+
+```
+
+
+
+```
 5
 ```
 
 
+# 
+
+```
+
+```
+
+
+```
+5
+```
+
+
+# 
+
+```
+
+```
+
+
+```
+5
+```
+
+
+# 
+
+```
+
+```
+
+
+```
+5
+```
+
+
+# 
+
+```
+
+```
+
+
+```
+5
+```
+
+
+# 
+
+```
+
+```
 
 
 * **script1.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at http://go.microsoft.com/fwlink/?LinkID=135170**
