@@ -18,11 +18,9 @@ export class ToolbarComponent implements OnInit {
   }
 
 
-  onLogout(){
+  onLogout() {
     this.authService.logout();
   }
-
-
 
 
 

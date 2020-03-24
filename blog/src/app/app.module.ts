@@ -8,7 +8,7 @@ import { NewPostModule } from './components/posts/new-post/new-post.module';
 import { PostComponent } from './components/posts/post/post.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { ToolbarComponent } from './shared/componentes/toolbar/toolbar.component';
+import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 
 /* Firebase */
 import { AngularFirestoreModule } from "@angular/fire/firestore";
@@ -18,6 +18,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { firebaseConfig } from 'src/environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContainerAppComponent } from './components/pages/container-app/container-app.component';
+// import { TableComponent } from './shared/components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ContainerAppComponent } from './components/pages/container-app/containe
     NewPostComponent,
     PostComponent,
     ToolbarComponent,
-    ContainerAppComponent
+    ContainerAppComponent,
+    // TableComponent
   ],
   imports: [
     BrowserModule,
