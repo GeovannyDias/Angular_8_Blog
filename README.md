@@ -247,14 +247,15 @@ ng g m components/admin/profile -m=app --route profile
 ```
 ng g c shared/components/table -m=app
 
+```
 
+# Angular material Datatable con Firebase - Angular 8 - #12 
 
 ```
 
+Material Icons:
 
-# 
-
-```
+https://material.io/resources/icons/?style=baseline
 
 ```
 
