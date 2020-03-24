@@ -248,6 +248,7 @@ ng g m components/admin/profile -m=app --route profile
 ng g c shared/components/table -m=app
 
 
+
 ```
 
 
