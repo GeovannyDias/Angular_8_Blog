@@ -271,10 +271,11 @@ ng g c shared/components/modal -m=app
 
 ```
 
-
-# 
+# Subir imagen & Guardar post en Firebase - Angular 8 tutorial - 14
 
 ```
+
+
 
 ```
 

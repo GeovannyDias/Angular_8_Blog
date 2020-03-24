@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, finalize } from "rxjs/operators";
 import { PostI } from "../../shared/models/post.interface";
+import { FileI } from 'src/app/shared/models/file.interface';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,12 @@ export class PostService {
   private postCollection: AngularFirestoreCollection<PostI>;
   private posts: Observable<PostI[]>;
 
+  private filePath: any;
+  private downloadURL: Observable<string>;
+
   constructor(
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private storage: AngularFireStorage
   ) { }
 
   // ==========================================================================
@@ -50,9 +56,9 @@ export class PostService {
   }
 
   setPost(post: PostI) {
-    const id = this.db.createId();
+    // const id = this.db.createId();
     this.postCollection = this.db.collection<PostI>('posts');
-    return this.postCollection.doc(id).set({ ...post });
+    return this.postCollection.doc(post.id).set({ ...post });
   }
 
   removePost(id) {
@@ -61,12 +67,39 @@ export class PostService {
   }
 
 
+  // -------------------------------------------
+  async addPost_uploadImage(post: PostI, image: FileI) {
 
-  // addUser(user: PostI) { // No utilizada
-  //   // Puede manjarse con "SET"
-  //   this.postCollection = this.db.collection<PostI>('posts');
-  //   return this.postCollection.add(user);
-  // }
+    const id = this.db.createId();
+    post.id = id;
 
+    // this.filePath = `images/${image.name}`;
+
+    this.filePath = 'images/' + id;
+    const fileRef = this.storage.ref(this.filePath);
+    const task = this.storage.upload(this.filePath, image);
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe(urlImage => {
+          this.downloadURL = urlImage;
+          console.log('URL_IMAGE:', this.downloadURL);
+          console.log('POST:', post);
+          post.imagePost = this.downloadURL;
+
+          // CALL ADD POST
+          this.setPost(post).then(() => {
+            console.log('SET POST SUCCESSFUL...');
+          }).catch(error => console.log('Error ser post', error));
+
+        });
+      })
+    ).subscribe();
+  }
+
+
+
+
+  
 
 }
