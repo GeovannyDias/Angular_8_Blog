@@ -47,7 +47,7 @@ export class AuthService {
   //Cerrar Sesión
   logout() {
     this.afAuth.auth.signOut().then(() => {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/login']);
     });
 
     // setTimeout(() => {

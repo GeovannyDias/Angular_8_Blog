@@ -224,18 +224,29 @@ Consultar: Como se puede encapsular en un componente el loading
 
 ```
 
+# Angular 8 Formulario de login (Reactive Form) - #9
 
 ```
-5
+
+ng g m components/admin -m=app --route admin (Crea un componente con un módulo independiente y un módulo para la ruta)
+
+ng g m components/auth/login -m=app --route login
+ng g service shared/services/auth                   (--spec=false)
+
 ```
 
+# Creamos zona Admin - Angular Material - Angular 8 - #10
+
+```
+ng g c components/pages/container-app -m=app
+
+ng g m components/admin/profile -m=app --route profile
+
+
+
+```
 
 # 
-
-```
-
-```
-
 
 ```
 5

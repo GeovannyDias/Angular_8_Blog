@@ -17,13 +17,15 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { firebaseConfig } from 'src/environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ContainerAppComponent } from './components/pages/container-app/container-app.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewPostComponent,
     PostComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ContainerAppComponent
   ],
   imports: [
     BrowserModule,

@@ -33,8 +33,9 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.loginForm.value.email, this.loginForm.value.pass).then(res => {
       console.log('Ok');
+      this.resetForm();
     }).catch(error => console.log(error));
-    this.resetForm();
+
   }
 
   resetForm() {
