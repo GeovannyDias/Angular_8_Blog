@@ -6,6 +6,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PostService } from 'src/app/components/posts/post.service';
 import { PostI } from '../../models/post.interface';
 
+import Swal from 'sweetalert2';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../modal/modal.component';
+
+
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -43,7 +48,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
-    private postService: PostService
+    private postService: PostService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -70,19 +76,68 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
 
-  // CRUD
+  // ========================================================================
+  // CRUD 
+  // ========================================================================
 
   onEditPost(post: PostI) {
-    console.log('Edit:', post);
+    // console.log('Edit:', post);
+
 
   }
 
   onDeletePost(post: PostI) {
-    console.log('Delete:', post);
+    // console.log('Delete:', post);
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#eb445a',
+      cancelButtonColor: '#2dd36f',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: false // cambia de posicion los botones
+    }).then(res => {
+
+      if (res.value) {
+        console.log('Deleted');
+        this.postService.removePost(post.id).then(() => {
+          Swal.fire('Delete', 'Your post has been deleted', 'success');
+        }).then(error => {
+          console.log('Error remove Data:', error)
+          Swal.fire('Error', 'There was an error deleting this post.', 'error');
+        });
+      }
+
+    }).catch(error => {
+      console.log('Error Swal:', error)
+      Swal.fire('Error', 'There was an error deleting this post', 'error')
+    });
   }
+
+  // ========================================================================
+  // BUTTON 
+  // ========================================================================
+
   // -------------------------
   onNewPost() {
     console.log('New Post');
+    this.openDialog();
   }
+
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalComponent);
+    dialogRef.afterClosed().subscribe(res => {
+      console.log('Dialog Result:', res);
+    });
+  }
+
+
+
+
+
 
 }

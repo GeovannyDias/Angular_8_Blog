@@ -18,6 +18,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { firebaseConfig } from 'src/environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ContainerAppComponent } from './components/pages/container-app/container-app.component';
+import { ModalComponent } from './shared/components/modal/modal.component';
 // import { TableComponent } from './shared/components/table/table.component';
 
 @NgModule({
@@ -27,6 +28,7 @@ import { ContainerAppComponent } from './components/pages/container-app/containe
     PostComponent,
     ToolbarComponent,
     ContainerAppComponent,
+    ModalComponent,
     // TableComponent
   ],
   imports: [
@@ -43,6 +45,9 @@ import { ContainerAppComponent } from './components/pages/container-app/containe
     MaterialModule,
     ReactiveFormsModule
 
+  ],
+  entryComponents: [
+    ModalComponent // Para ocupar el modal en toda la aplicacion
   ],
   providers: [
     { provide: StorageBucket, useValue: 'gs://blog-geo.appspot.com' } // Para trabajar con el Bucket de las imagenes (Storage of Firebase)

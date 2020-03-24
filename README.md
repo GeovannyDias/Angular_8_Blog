@@ -252,16 +252,23 @@ ng g c shared/components/table -m=app
 # Angular material Datatable con Firebase - Angular 8 - #12 
 
 ```
-
 Material Icons:
 
 https://material.io/resources/icons/?style=baseline
 
 ```
 
+# Sweetalert 2 & Angular Material Dialog - Angular 8 tutorial español - 13
 
 ```
-5
+Sweetalert2:
+
+https://sweetalert2.github.io/
+
+npm install sweetalert2
+
+ng g c shared/components/modal -m=app
+
 ```
 
 
