@@ -11,7 +11,9 @@ import {
   MatListModule,
   MatProgressSpinnerModule,
   MatDividerModule,
-  MatChipsModule
+  MatChipsModule,
+  MatFormFieldModule,
+  MatInputModule
 } from "@angular/material";
 
 const myModule = [
@@ -24,7 +26,9 @@ const myModule = [
   MatListModule,
   MatProgressSpinnerModule,
   MatDividerModule,
-  MatChipsModule
+  MatChipsModule,
+  MatFormFieldModule,
+  MatInputModule
 ]
 
 @NgModule({

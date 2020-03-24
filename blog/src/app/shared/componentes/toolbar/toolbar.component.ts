@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,9 +10,20 @@ export class ToolbarComponent implements OnInit {
 
   public appName: string = 'Blog-Geo';
 
-  constructor() { }
+  constructor(
+    public authService: AuthService
+  ) { }
 
   ngOnInit() {
   }
+
+
+  onLogout(){
+    this.authService.logout();
+  }
+
+
+
+
 
 }
