@@ -314,3 +314,9 @@ This error happens due to a security measure which won't let scripts be executed
 # Cómo usar Flexbox en Angular Material
 * **https://www.belikesoftware.com/usar-flexbox-angular-material/**
 * **https://stackoverflow.com/questions/43200545/create-a-responsive-toolbar-using-angular-material**
+
+# Angular 9/8 Firestore Database CRUD Tutorial
+
+* **https://www.techiediaries.com/angular-firebase/angular-9-8-firestore-database-crud-tutorial/?fbclid=IwAR1wdlNjkSSSaCZys__Bbt0s6IoQJnDd31na_9Jl3UxmIotLbv2xsxQwRvs**
+
+
