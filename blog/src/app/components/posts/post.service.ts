@@ -50,7 +50,18 @@ export class PostService {
     return this.postCollection.doc<PostI>(id).valueChanges();
   }
 
-  updatePost(id: string, post: PostI) {
+  updatePost(id: string, post: PostI, newImage?: FileI): void {
+    this.postCollection = this.db.collection<PostI>('posts');
+    if (newImage) { // Update data and image
+      this.addPost_uploadImage(post, newImage, true);
+    } else { // Update only data
+      this.postCollection.doc(id).update(post).then(() => {
+        console.log('UPDATE POST SUCCESSFUL...');
+      }).catch(error => console.log('Error update post', error));
+    }
+  }
+
+  updatePost_image(id: string, post: PostI) {
     this.postCollection = this.db.collection<PostI>('posts');
     return this.postCollection.doc(id).update(post);
   }
@@ -68,14 +79,19 @@ export class PostService {
 
 
   // -------------------------------------------
-  async addPost_uploadImage(post: PostI, image: FileI) {
-
-    const id = this.db.createId();
-    post.id = id;
-
+  async addPost_uploadImage(post: PostI, image: FileI, edit?: boolean) {
+    if (edit) { // updatPost
+      const id = post.id;
+      // post.id = id;
+      this.filePath = 'images/' + id;
+    } else { // setPost
+      const id = this.db.createId();
+      post.id = id;
+      this.filePath = 'images/' + id;
+    }
     // this.filePath = `images/${image.name}`;
 
-    this.filePath = 'images/' + id;
+    // this.filePath = 'images/' + id;
     const fileRef = this.storage.ref(this.filePath);
     const task = this.storage.upload(this.filePath, image);
 
@@ -86,11 +102,19 @@ export class PostService {
           console.log('URL_IMAGE:', this.downloadURL);
           console.log('POST:', post);
           post.imagePost = this.downloadURL;
+          post.fileRef = this.filePath;
 
-          // CALL ADD POST
-          this.setPost(post).then(() => {
-            console.log('SET POST SUCCESSFUL...');
-          }).catch(error => console.log('Error ser post', error));
+          if (edit) {
+            // UPDATE POST
+            this.updatePost_image(post.id, post).then(() => {
+              console.log('UPDATE POST SUCCESSFUL...');
+            }).catch(error => console.log('Error update post', error));
+          } else {
+            // CALL ADD POST
+            this.setPost(post).then(() => {
+              console.log('SET POST SUCCESSFUL...');
+            }).catch(error => console.log('Error set post', error));
+          }
 
         });
       })
@@ -100,6 +124,6 @@ export class PostService {
 
 
 
-  
+
 
 }

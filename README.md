@@ -17,6 +17,8 @@ npm cache clean --force
 ng new => Si ejecutamos solo esta linea de comandos, el CLI mostrara opciones.
 ng new blog
 
+ng new blog --style=scss --routing
+
 ng new blog --routing  // Para que nos genere un módulo de ruta listo para funcionar
 
 ```
@@ -274,14 +276,27 @@ ng g c shared/components/modal -m=app
 # Subir imagen & Guardar post en Firebase - Angular 8 tutorial - 14
 
 ```
+None
 
+```
 
+# Editamos y guardamos en Firebase - Angular 8 tutorial Español - 15
+
+```
+Separar el componente para editar
+
+ng g c components/posts/edit-post -m=app
+
+Generar un Module:
+
+ng g module components/posts/edit-post -m=app
 
 ```
 
+# Modificar User Profile en Firebase - Angular 8 - 16
 
 ```
-5
+None -- ?
 ```
 
 
@@ -290,6 +305,33 @@ ng g c shared/components/modal -m=app
 ```
 
 ```
+
+# 
+
+```
+
+```
+
+# 
+
+```
+
+```
+
+
+# 
+
+```
+
+```
+
+
+# 
+
+```
+
+```
+
 
 
 * **script1.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at http://go.microsoft.com/fwlink/?LinkID=135170**
@@ -314,3 +356,42 @@ This error happens due to a security measure which won't let scripts be executed
 # Cómo usar Flexbox en Angular Material
 * **https://www.belikesoftware.com/usar-flexbox-angular-material/**
 * **https://stackoverflow.com/questions/43200545/create-a-responsive-toolbar-using-angular-material**
+
+# Angular Opciones de CLI SASS
+
+```
+
+--------
+Geo:
+
+ng new My_New_Project --style=scss --routing
+--------
+
+
+ng new My_New_Project --style=sass 
+ng new My_New_Project --style=scss
+
+ng set defaults.styleExt sass
+ng set defaults.styleExt scss
+
+Actualización para Angular 6+
+
+ng new sassy-project --style=scss
+ng new sassy-project --style=sass
+
+Actualizando proyecto existente
+
+ng config schematics.@schematics/angular:component.styleext scss
+ng config schematics.@schematics/angular:component.styleext sass
+
+"schematics": {
+    "@schematics/angular:component": {
+        "styleext": "scss"
+    }
+} 
+
+
+```
+
+* **https://www.it-swarm.dev/es/angular/angular-opciones-de-cli-sass/823418252/**
+
