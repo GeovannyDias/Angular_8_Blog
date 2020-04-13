@@ -395,3 +395,8 @@ ng config schematics.@schematics/angular:component.styleext sass
 
 * **https://www.it-swarm.dev/es/angular/angular-opciones-de-cli-sass/823418252/**
 
+# Angular 9/8 Firestore Database CRUD Tutorial
+
+* **https://www.techiediaries.com/angular-firebase/angular-9-8-firestore-database-crud-tutorial/?fbclid=IwAR1wdlNjkSSSaCZys__Bbt0s6IoQJnDd31na_9Jl3UxmIotLbv2xsxQwRvs**
+
+
