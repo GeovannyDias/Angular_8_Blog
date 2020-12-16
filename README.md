@@ -153,6 +153,7 @@ service firebase.storage {
   }
 }
 
+
 Pendiente Habilidar Hosting:
 
 AngularFire:
@@ -167,6 +168,111 @@ Hosting CLI: (Pendiente)
 ng add @angular/fire
 firebase logout
 firebase login
+
+```
+
+# REGLAS FIREBASE - GEO
+
+```
+Default:
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
+Si el user esta autenticado:
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+
+Si es una colección especifica con su uid:
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match / users /{id_user} {
+      allow read, write: if request.auth.uid == id_user;
+    }
+  }
+}
+
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin(){
+      return exists(/databases/$(database)/documents/admins/$request.auth.uid)
+    }
+
+    match / users /{id_user} {
+      allow read;
+      allow create, update: if request.auth.uid == id_user;
+      allow delete: if isAdmin();
+    }
+  }
+}
+
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin(){
+      return exists(/databases/$(database)/documents/admins/$request.auth.uid)
+    }
+
+    match / users /{id_user} {
+      allow read;
+      allow create, update: if request.auth.uid == id_user;
+      allow delete: if isAdmin();
+    }
+  }
+}
+
+Comodin ** // Cualquier rama o cualquier colección que es dentro de users
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin(){
+      return exists(/databases/$(database)/documents/admins/$request.auth.uid)
+    }
+
+    match / users /{document=**} {
+      allow read;
+      allow create, update: if request.auth.uid == id_user;
+      allow delete: if isAdmin();
+    }
+  }
+}
+
+https://cloud.google.com/firestore/docs/security/get-started?hl=es-419
+
+resource.data.published == true || request.auth.uid == resource.data.author;
+
+Cloud Firestore Rules | Parte 1
+
+https://www.youtube.com/watch?v=GLQ76DfRBDE
+
+Login con google - gmail
+
+Envia correos con Firebase Functions
+
+https://www.youtube.com/watch?v=MeXLkNWTF_g
+
+
+Login con Facebook y Firebase con https en localhost
+https://www.youtube.com/watch?v=qI6E2lR5cDM
 
 ```
 
