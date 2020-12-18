@@ -402,39 +402,73 @@ ng g module components/posts/edit-post -m=app
 # Modificar User Profile en Firebase - Angular 8 - 16
 
 ```
-None -- ?
+None - OK
 ```
 
-
-# 
-
-```
+# Angular 8 Guard tutorial (protegiendo rutas) - 17
 
 ```
-
-# 
-
+ng g guard shared/guards/auth
+canActivate
 ```
 
-```
-
-# 
+# Hacemos Refactor de nuestra Angular APP - 18
 
 ```
+encapsular componentes
+ng g c components/posts/details-post -m=app (añade a nuestro módulo principal)
 
 ```
 
+# Deploy Firebase - Angular APP - 19
 
-# 
+```
+Configurar Firebase Hosting
+
+npm install -g firebase-tools
+firebase login // firebase logout
+firebase init
+
+firebase deploy
+
+OK
+```
+# ERROR DEPLOY
+
+```
+An unhandled exception occurred: [BABEL] D:\Developer_Studio\Web\Framework\Angular\Angular_8\01_Blog\Angular_8_Blog\blog\dist\blog\8-es2015.aa55fe8139c0937355b2.js: Could not find plugin "proposal-numeric-separator". Ensure there is an entry in ./available-plugins.js for it. (While processing: "D:\\Developer_Studio\\Web\\Framework\\Angular\\Angular_8\\01_Blog\\Angular_8_Blog\\blog\\node_modules\\@babel\\preset-env\\lib\\index.js")
+See "C:\Users\Geo\AppData\Local\Temp\ng-GABEDL\angular-errors.log" for further details.
+
+Adding the dependency @babel/compat-data": "7.8.0" fixed the issue for me.
+
+package.json
+
+"dependencies": {
+   "@babel/compat-data": "7.8.0",
+   ...
+ }
+
+npm install
+ng build --prod
 
 ```
 
-```
-
-
-# 
+# FIREBASE.JSON
 
 ```
+Direccionar a la carpeta "blog" dentro de "dist"
+
+{
+  "hosting": {
+    "public": "dist/blog",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
+
 
 ```
 
