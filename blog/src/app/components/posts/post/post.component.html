@@ -1,25 +1,23 @@
-<div class="container" *ngIf="post$ | async as post; else loading">
-    <mat-card class="post-card">
+<mat-card-header>
+    <mat-card-title>
+        <a [routerLink]="['/details-post', post.id]">
+            {{ post.titlePost }}
+        </a>
+    </mat-card-title>
+</mat-card-header>
+<img matCardImage [src]="post.imagePost">
+<mat-card-content>
+    <p class="content">
+        <!-- Interpolar -->
+        {{ post.contentPost }}
+    </p>
+</mat-card-content>
 
-        <img matCardImage class="align-center" [src]="post.imagePost">
-        <mat-card-content>
-            <mat-card-title>
-                {{ post.titlePost }}
-            </mat-card-title>
-            <p class="content">
-                <!-- Interpolar -->
-                {{ post.contentPost }}
-            </p>
-        </mat-card-content>
-    </mat-card>
-</div>
-
-
-<!-- Loading para saber si esta cargando los Posts -->
-<!-- Se puede encapsular en un componente el loading -->
-<ng-template #loading>
-    <!-- Loading... -->
-    <div class="container-spinner">
-        <mat-spinner></mat-spinner>
-    </div>
-</ng-template>
+<mat-divider></mat-divider>
+<mat-card-actions>
+    <mat-chip-list>
+        <mat-chip selected *ngFor="let tag of post.tagsPost" [ngClass]="tag">
+            {{ tag }}
+        </mat-chip>
+    </mat-chip-list>
+</mat-card-actions>

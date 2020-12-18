@@ -1,27 +1,33 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { FileI } from '../models/file.interface';
+import { UserI } from '../models/user.interface';
+import { map, finalize } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  public userData: Observable<firebase.User>;
+  public userData$: Observable<firebase.User>;
+
+  private filePath: any;
+  // private downloadURL: Observable<string>;
 
   constructor(
     public afAuth: AngularFireAuth,
     private router: Router,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private storage: AngularFireStorage,
   ) {
-    this.userData = this.afAuth.authState;
+    this.userData$ = this.afAuth.authState;
   }
 
 
-
-  //=================================================================================
   //Iniciar Sesión
   async login(mail: string, pass: string) {
     return new Promise((resolve, rejected) => {
@@ -43,7 +49,7 @@ export class AuthService {
     });
   }
 
-  //=================================================================================
+
   //Cerrar Sesión
   logout() {
     this.afAuth.auth.signOut().then(() => {
@@ -55,6 +61,49 @@ export class AuthService {
     // }, 1000);
 
   }
+
+  preUpdateUserProfile(user: UserI, image?: FileI) {
+    if (image) {
+      this.uploadImage(user, image);
+    } else {
+      this.updateUserProfile(user);
+    }
+  }
+
+  async uploadImage(user: UserI, image: FileI) {
+    this.filePath = 'profile/' + image.name;
+    // this.filePath = `images/${image.name}`;
+    // this.filePath = 'images/' + id;
+    const fileRef = this.storage.ref(this.filePath);
+    const task = this.storage.upload(this.filePath, image);
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe(urlImage => {
+          // this.downloadURL = urlImage;
+          user.photoURL = urlImage;
+          this.updateUserProfile(user);
+        });
+      })
+    ).subscribe();
+  }
+
+  async updateUserProfile(user: UserI) {
+    console.log('save profile', user);
+    await this.afAuth.auth.currentUser.updateProfile({
+      displayName: user.displayName,
+      photoURL: user.photoURL
+    }).then(() => {
+      console.log('Update profile....');
+    }).catch(error => console.log('Error update profile:', error));
+  }
+
+
+
+
+
+
+
+
 
   //=================================================================================
   // Registro

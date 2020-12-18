@@ -6,11 +6,11 @@
   grid-row-gap: 15px;
   justify-content: center;
 
-  a {
-    cursor: pointer;
-    color: #ffffff;
-    text-decoration: none;
-  }
+  // a {
+  //   cursor: pointer;
+  //   color: #ffffff;
+  //   text-decoration: none;
+  // }
 
   .post-card {
     background: #444444;
@@ -19,13 +19,13 @@
     padding: 20px;
     font-size: 150%;
 
-    img {
-      height: 200px;
-    }
-    p.content {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    // img {
+    //   height: 200px;
+    // }
+    // p.content {
+    //   white-space: nowrap;
+    //   overflow: hidden;
+    //   text-overflow: ellipsis;
+    // }
   }
 }

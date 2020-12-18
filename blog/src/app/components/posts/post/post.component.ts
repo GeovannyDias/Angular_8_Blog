@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { PostService } from '../post.service';
-import { Observable } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
+// import { PostService } from '../../posts/post.service';
+// import { Observable } from 'rxjs';
 import { PostI } from 'src/app/shared/models/post.interface';
 
 @Component({
@@ -10,42 +9,15 @@ import { PostI } from 'src/app/shared/models/post.interface';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
-
-  public post: {
-    id: string;
-    titlePost: string;
-    contentPost: string;
-    imagePost: string;
-  } = {
-      id: '1',
-      titlePost: 'Post One',
-      contentPost: 'Hola geo',
-      imagePost: 'https://i.picsum.photos/id/237/200/300.jpg'
-    }
-
-
-  post$: Observable<PostI>
-  id_post: string;
+  @Input() post: PostI;
+  // public posts$: Observable<PostI[]>; // $ Es una convencion
 
   constructor(
-    private route: ActivatedRoute,
-    private postService: PostService
+    // private postService: PostService
   ) { }
 
   ngOnInit() {
-    this.getDataPost();
-
+    // this.posts$ = this.postService.getPosts();
   }
-
-
-  getDataPost() {
-    // this.post.id = this.route.snapshot.params.id;
-    this.id_post = this.route.snapshot.params.id;
-    if (this.id_post) {
-      this.post$ = this.postService.getPost(this.id_post);
-    }
-  }
-
-
 
 }
